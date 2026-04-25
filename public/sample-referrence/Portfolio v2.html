@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>真冬 — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body, #root {
+  width: 100%; min-height: 100%;
+  background: #050710;
+  color: #d0e4f2;
+  font-family: 'Noto Serif JP', serif;
+  overflow-x: hidden;
+}
+
+/* ── Stars ── */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.06; transform: scale(1); }
+  50%       { opacity: 0.5;  transform: scale(1.5); }
+}
+.star {
+  position: fixed; border-radius: 50%; background: #c8dff0;
+  animation: twinkle linear infinite; pointer-events: none; z-index: 0;
+}
+
+/* ── Scroll indicator line animation ── */
+@keyframes scrollDrop {
+  0%   { top: -100%; opacity: 0; }
+  15%  { opacity: 1; }
+  85%  { opacity: 1; }
+  100% { top: 200%;  opacity: 0; }
+}
+.scroll-track {
+  position: relative;
+  width: 1px; height: 52px;
+  background: rgba(100,165,225,0.12);
+  overflow: hidden;
+  margin: 0 auto;
+}
+.scroll-drop {
+  position: absolute; left: 0;
+  width: 1px; height: 60%;
+  background: linear-gradient(180deg, transparent, rgba(110,175,230,0.9), transparent);
+  animation: scrollDrop 2s ease-in-out infinite;
+}
+
+/* ── Page transition ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.page-enter { animation: fadeUp 0.45s ease forwards; }
+
+/* ── Back button ── */
+.back-btn {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: rgba(120,180,220,0.55);
+  cursor: pointer; background: none; border: none;
+  transition: color 0.2s; padding: 0;
+}
+.back-btn:hover { color: #8ec8e8; }
+
+/* ── Section divider ── */
+.sec-divider {
+  display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem;
+}
+.sec-divider-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase; flex-shrink: 0;
+}
+
+/* ── Nav Panels (top page) — Ice texture ── */
+.nav-panels { display: flex; flex-direction: column; gap: 28px; }
+.nav-panel {
+  width: 100%;
+  background:
+    repeating-linear-gradient(-52deg, transparent, transparent 18px, rgba(160,215,245,0.018) 18px, rgba(160,215,245,0.018) 19px),
+    repeating-linear-gradient(38deg,  transparent, transparent 24px, rgba(140,200,240,0.012) 24px, rgba(140,200,240,0.012) 25px),
+    rgba(10,22,50,0.52);
+  backdrop-filter: blur(18px) saturate(1.2);
+  -webkit-backdrop-filter: blur(18px) saturate(1.2);
+  border-top:    1px solid rgba(200,235,255,0.18);
+  border-left:   1px solid rgba(160,210,240,0.1);
+  border-right:  1px solid rgba(120,180,220,0.08);
+  border-bottom: 1px solid rgba(90,150,200,0.12);
+  border-radius: 2px;
+  box-shadow:
+    0 1px 0 rgba(210,240,255,0.07) inset,
+    0 -1px 0 rgba(60,120,200,0.06) inset,
+    0 4px 24px rgba(20,50,110,0.35),
+    0 1px 4px rgba(100,180,240,0.08);
+  padding: 2rem 2.4rem;
+  cursor: pointer; transition: background 0.3s, box-shadow 0.3s, border-color 0.3s;
+  text-decoration: none; display: flex;
+  justify-content: space-between; align-items: center;
+  position: relative; overflow: hidden;
+  text-align: left;
+}
+/* top-edge glint */
+.nav-panel::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent 5%, rgba(220,245,255,0.35) 40%, rgba(200,235,255,0.55) 52%, rgba(220,245,255,0.35) 64%, transparent 95%);
+}
+/* bottom accent sweep */
+.nav-panel::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--p-accent, #7bbcd8), transparent);
+  transform: scaleX(0); transition: transform 0.38s ease;
+}
+.nav-panel:hover {
+  background:
+    repeating-linear-gradient(-52deg, transparent, transparent 18px, rgba(160,215,245,0.03) 18px, rgba(160,215,245,0.03) 19px),
+    repeating-linear-gradient(38deg,  transparent, transparent 24px, rgba(140,200,240,0.02) 24px, rgba(140,200,240,0.02) 25px),
+    rgba(14,30,68,0.62);
+  box-shadow:
+    0 1px 0 rgba(210,240,255,0.1) inset,
+    0 -1px 0 rgba(60,120,200,0.08) inset,
+    0 6px 32px rgba(20,50,120,0.45),
+    0 0 0 1px rgba(120,190,240,0.12);
+}
+.nav-panel:hover::after { transform: scaleX(1); }
+.nav-panel-left { flex: 1; }
+.nav-panel-en {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase;
+  margin-bottom: 0.5rem; opacity: 0.8;
+}
+.nav-panel-ja {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 22px; font-weight: 300;
+  letter-spacing: 0.18em; color: #d4e8f6; margin-bottom: 0.6rem;
+}
+.nav-panel-desc {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 12px; line-height: 1.7;
+  color: rgba(130,175,205,0.55); letter-spacing: 0.04em;
+}
+.nav-panel-arrow {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px; margin-left: 2rem; flex-shrink: 0;
+  opacity: 0; transition: opacity 0.25s, transform 0.25s;
+  transform: translateX(-8px);
+}
+.nav-panel:hover .nav-panel-arrow { opacity: 0.55; transform: translateX(0); }
+
+/* ── SNS buttons ── */
+.sns-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+.sns-btn {
+  display: inline-flex; align-items: center; gap: 0.55rem;
+  background: rgba(10,18,40,0.7);
+  border: 1px solid rgba(100,160,210,0.2);
+  border-radius: 3px; padding: 0.65rem 1.3rem;
+  text-decoration: none;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 13px; color: #b4d0e8; letter-spacing: 0.07em;
+  transition: all 0.2s; cursor: pointer;
+}
+.sns-btn:hover { background: rgba(120,188,216,0.1); border-color: rgba(120,188,216,0.45); }
+.sns-icon {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px; line-height: 1;
+  opacity: 0.75;
+}
+
+/* ── Timeline ── */
+.timeline-item { display: flex; gap: 1.4rem; margin-bottom: 1.8rem; }
+.tl-year {
+  flex-shrink: 0; width: 52px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px; letter-spacing: 0.08em; padding-top: 2px;
+}
+.tl-body { border-left: 1px solid rgba(120,188,216,0.18); padding-left: 1.4rem; }
+.tl-title {
+  font-family: 'Noto Serif JP', serif; font-size: 14px; font-weight: 400;
+  color: #cce0f0; margin-bottom: 0.35rem; letter-spacing: 0.06em;
+}
+.tl-desc {
+  font-family: 'Noto Sans JP', sans-serif; font-size: 12px;
+  color: #7a9db5; line-height: 1.78; letter-spacing: 0.04em;
+}
+
+/* ── Achievement card ── */
+.achiev-card {
+  border-radius: 3px; padding: 1.1rem 1.3rem;
+  margin-bottom: 0.9rem;
+  border: 1px solid rgba(100,160,210,0.1);
+  background: rgba(10,18,42,0.7);
+}
+.achiev-tag {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 10px; letter-spacing: 0.2em;
+  padding: 2px 8px; border-radius: 2px;
+  display: inline-block; margin-bottom: 0.55rem;
+}
+.achiev-title {
+  font-family: 'Noto Serif JP', serif; font-size: 14px; font-weight: 400;
+  color: #cce0f0; margin-bottom: 0.35rem; letter-spacing: 0.06em;
+}
+.achiev-desc {
+  font-family: 'Noto Sans JP', sans-serif; font-size: 12px;
+  color: #7a9db5; line-height: 1.7; letter-spacing: 0.03em;
+}
+
+/* ── Link card ── */
+.link-card {
+  display: block; text-decoration: none;
+  border-radius: 3px; padding: 1.3rem 1.5rem;
+  margin-bottom: 12px;
+  border: 1px solid rgba(100,160,210,0.12);
+  transition: border-color 0.25s;
+  background: rgba(10,18,40,0.7);
+}
+.link-card:hover { border-color: rgba(100,160,210,0.38); }
+.link-card-title {
+  font-family: 'Noto Serif JP', serif; font-size: 16px; font-weight: 300;
+  color: #cce0f0; margin-bottom: 0.4rem; letter-spacing: 0.08em;
+}
+.link-card-sub {
+  font-family: 'Noto Sans JP', sans-serif; font-size: 12px;
+  color: #6a8fa8; line-height: 1.7; letter-spacing: 0.04em; margin-bottom: 0.7rem;
+}
+.link-card-arrow {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 12px; letter-spacing: 0.12em; opacity: 0.65;
+}
+
+/* ── Skill tags ── */
+.skill-tag {
+  display: inline-block;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 11px; letter-spacing: 0.15em;
+  padding: 3px 10px; border-radius: 2px; margin: 3px;
+  border: 1px solid rgba(100,160,210,0.2);
+  color: rgba(155,195,222,0.7);
+}
+
+/* ── Subpage hero ── */
+.subpage-hero { padding: 3.5rem 0 2rem; border-bottom: 1px solid rgba(80,140,200,0.08); margin-bottom: 2.5rem; }
+.subpage-en {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 11px; letter-spacing: 0.5em; text-transform: uppercase;
+  margin-bottom: 0.6rem; opacity: 0.55;
+}
+.subpage-ja {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 32px; font-weight: 200; letter-spacing: 0.2em; color: #d8ecf8;
+}
+
+/* ── Footer ── */
+.footer {
+  text-align: center; padding: 2rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 10px; letter-spacing: 0.25em;
+  color: rgba(80,120,160,0.28);
+}
+
+/* ════════════════════════
+   RESPONSIVE — MOBILE
+════════════════════════ */
+@media (max-width: 640px) {
+  nav { padding: 1rem 1.2rem; }
+  .nav-links { gap: 0.9rem; }
+  .nav-link { font-size: 11px; letter-spacing: 0.06em; }
+  .nav-title { font-size: 14px; }
+
+  .nav-panel { padding: 1.5rem 1.4rem; flex-direction: column; align-items: flex-start; }
+  .nav-panel-ja { font-size: 20px; }
+  .nav-panel-arrow { display: none; }
+  .nav-panel-desc { font-size: 11px; }
+
+  .subpage-ja { font-size: 26px; }
+  .subpage-hero { padding: 2.5rem 0 1.5rem; }
+
+  .timeline-item { gap: 1rem; }
+  .tl-year { width: 44px; font-size: 12px; }
+  .tl-title { font-size: 13px; }
+  .tl-desc  { font-size: 11px; }
+
+  .achiev-title { font-size: 13px; }
+  .achiev-desc  { font-size: 11px; }
+
+  .link-card-title { font-size: 14px; }
+  .link-card-sub   { font-size: 11px; }
+
+  .sns-btn { font-size: 12px; padding: 0.6rem 1rem; }
+}
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+const { useState, useEffect, useRef, useCallback } = React;
+
+const A1 = "#7bbcd8";
+const A2 = "#9baee8";
+const A3 = "#5ecac0";
+
+/* ── Starfield ── */
+function Starfield() {
+  const stars = useRef(
+    Array.from({ length: 90 }, (_, i) => ({
+      id: i,
+      left:  `${Math.random() * 100}%`,
+      top:   `${Math.random() * 100}%`,
+      size:  Math.random() * 1.6 + 0.5,
+      dur:   `${Math.random() * 5 + 3}s`,
+      delay: `${Math.random() * 7}s`,
+    }))
+  ).current;
+  return (
+    <div style={{ position:"fixed", inset:0, zIndex:0, pointerEvents:"none" }}>
+      {stars.map(s => (
+        <div key={s.id} className="star" style={{ left:s.left, top:s.top, width:s.size, height:s.size, animationDuration:s.dur, animationDelay:s.delay }} />
+      ))}
+    </div>
+  );
+}
+
+/* ── Snowflake canvas ── */
+function drawCrystal(ctx, x, y, size, rot, op) {
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.rotate(rot);
+  ctx.globalAlpha = op;
+  ctx.strokeStyle = "rgba(200,230,248,1)";
+  ctx.lineWidth = size > 5 ? 0.9 : 0.6;
+  ctx.lineCap = "round";
+  const arms = 6;
+  for (let i = 0; i < arms; i++) {
+    ctx.rotate((Math.PI * 2) / arms);
+    // main arm
+    ctx.beginPath(); ctx.moveTo(0, 0); ctx.lineTo(0, size); ctx.stroke();
+    // branches at 45% and 68%
+    const b1 = size * 0.42, b2 = size * 0.66, bw = size * 0.28;
+    ctx.beginPath(); ctx.moveTo(0, b1); ctx.lineTo( bw, b1 + bw * 0.8); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(0, b1); ctx.lineTo(-bw, b1 + bw * 0.8); ctx.stroke();
+    if (size > 5) {
+      ctx.beginPath(); ctx.moveTo(0, b2); ctx.lineTo( bw * 0.65, b2 + bw * 0.5); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(0, b2); ctx.lineTo(-bw * 0.65, b2 + bw * 0.5); ctx.stroke();
+    }
+    // tip dot
+    if (size > 7) {
+      ctx.beginPath(); ctx.arc(0, size, size * 0.07, 0, Math.PI * 2);
+      ctx.fillStyle = "rgba(210,238,252,0.8)"; ctx.fill();
+    }
+  }
+  ctx.globalAlpha = 1;
+  ctx.restore();
+}
+
+function SnowCanvas({ count = 42 }) {
+  const ref = useRef(null);
+  useEffect(() => {
+    const canvas = ref.current; if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    let w, h;
+    const resize = () => { w = canvas.offsetWidth; h = canvas.offsetHeight; canvas.width = w; canvas.height = h; };
+    resize();
+    const flakes = Array.from({ length: count }, () => ({
+      x:  Math.random() * (w || 400),
+      y:  Math.random() * (h || 600),
+      sz: Math.random() * 9 + 3,
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: Math.random() * 0.28 + 0.1,
+      rot:   Math.random() * Math.PI * 2,
+      rotV:  (Math.random() - 0.5) * 0.008,
+      op: Math.random() * 0.45 + 0.15,
+    }));
+    let raf;
+    const draw = () => {
+      ctx.clearRect(0, 0, w, h);
+      flakes.forEach(f => {
+        drawCrystal(ctx, f.x, f.y, f.sz, f.rot, f.op);
+        f.x += f.vx; f.y += f.vy; f.rot += f.rotV;
+        if (f.y > h + f.sz * 2) { f.y = -f.sz * 2; f.x = Math.random() * w; }
+        if (f.x < -20) f.x = w + 20;
+        if (f.x > w + 20) f.x = -20;
+      });
+      raf = requestAnimationFrame(draw);
+    };
+    draw();
+    const obs = new ResizeObserver(resize); obs.observe(canvas);
+    return () => { cancelAnimationFrame(raf); obs.disconnect(); };
+  }, []);
+  return <canvas ref={ref} style={{ position:"absolute", inset:0, width:"100%", height:"100%", pointerEvents:"none", zIndex:1 }} />;
+}
+
+
+
+/* ── Section divider ── */
+function SecDivider({ label, accent }) {
+  return (
+    <div className="sec-divider">
+      <div style={{ width:22, height:1, background:`linear-gradient(90deg, ${accent}, transparent)`, flexShrink:0 }} />
+      <span className="sec-divider-label" style={{ color:accent }}>{label}</span>
+      <div style={{ flex:1, height:1, background:`linear-gradient(90deg, ${accent}28, transparent)` }} />
+    </div>
+  );
+}
+
+/* ── Nav Panel ── */
+function NavPanel({ en, ja, desc, accent, onClick }) {
+  return (
+    <button className="nav-panel" onClick={onClick} style={{ "--p-accent": accent }}>
+      <div className="nav-panel-left">
+        <div className="nav-panel-en" style={{ color:accent }}>{en}</div>
+        <div className="nav-panel-ja">{ja}</div>
+        <div className="nav-panel-desc">{desc}</div>
+      </div>
+      <div className="nav-panel-arrow" style={{ color:accent }}>→</div>
+    </button>
+  );
+}
+
+/* ══════════════════════════════
+   TOP PAGE
+══════════════════════════════ */
+function TopPage({ onNav }) {
+  return (
+    <div className="page-enter" style={{ position:"relative", zIndex:1 }}>
+      {/* Hero */}
+      <section style={{ position:"relative", minHeight:"64vh", display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center", textAlign:"center", padding:"6rem 2rem 4rem", overflow:"hidden" }}>
+        {/* Aurora */}
+        <div style={{ position:"absolute", inset:0, pointerEvents:"none" }}>
+          <div style={{ position:"absolute", top:"-15%", left:"50%", transform:"translateX(-50%)", width:"80%", height:"90%", background:"radial-gradient(ellipse 65% 55% at 50% 30%, rgba(55,95,200,0.13) 0%, transparent 70%)" }} />
+          <div style={{ position:"absolute", top:"5%", left:"15%", width:"70%", height:"75%", background:"radial-gradient(ellipse 50% 40% at 38% 20%, rgba(90,55,175,0.09) 0%, transparent 65%)" }} />
+          <div style={{ position:"absolute", top:"8%", right:"8%", width:"50%", height:"65%", background:"radial-gradient(ellipse 42% 35% at 65% 18%, rgba(50,155,200,0.07) 0%, transparent 60%)" }} />
+        </div>
+        <SnowCanvas />
+        {/* Accent dots */}
+        {[{top:"18%",left:"12%"},{top:"27%",right:"9%"},{top:"11%",right:"31%"},{top:"43%",left:"7%"},{top:"19%",left:"41%"}].map((p,i) => (
+          <div key={i} style={{ position:"absolute", width:2, height:2, borderRadius:"50%", background:"white", opacity:0.18+i*0.05, ...p }} />
+        ))}
+        {/* Text */}
+        <div style={{ position:"relative", zIndex:2 }}>
+          <div style={{ fontFamily:"'Cormorant Garamond', serif", fontSize:10, letterSpacing:"0.5em", color:A1, marginBottom:"2.2rem", opacity:0.6, textTransform:"uppercase" }}>— Portfolio —</div>
+          <h1 style={{
+            fontFamily:"'Noto Serif JP', serif", fontWeight:200,
+            fontSize:"clamp(42px, 8vw, 64px)",
+            letterSpacing:"0.3em", color:"transparent",
+            background:"linear-gradient(140deg, #deeeff 0%, #a4ccec 45%, #c0a8ee 100%)",
+            WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent",
+            filter:"drop-shadow(0 0 22px rgba(120,185,245,0.28))",
+            marginBottom:"1.2rem", lineHeight:1.1
+          }}>真冬</h1>
+          <div style={{ fontFamily:"'Noto Serif JP', serif", fontSize:13, fontWeight:300, color:"rgba(148,192,222,0.72)", letterSpacing:"0.28em", marginBottom:"3.5rem" }}>ソフトウェアエンジニア</div>
+          {/* Animated scroll indicator */}
+          <div style={{ display:"flex", flexDirection:"column", alignItems:"center" }}>
+            <div className="scroll-track">
+              <div className="scroll-drop" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Nav panels */}
+      <section style={{ position:"relative" }}>
+        {/* dark veil so stars stay behind panels */}
+        <div style={{ position:"absolute", inset:0, background:"rgba(4,6,14,0.72)", zIndex:0, pointerEvents:"none" }} />
+        <div style={{ position:"relative", zIndex:1, maxWidth:760, margin:"0 auto", padding:"3rem 2rem" }}>
+          <div className="nav-panels">
+            <NavPanel en="Career" ja="経歴" accent={A1} desc="学歴・職歴・スキルなど経歴の詳細" onClick={() => onNav("career")} />
+            <NavPanel en="Achievements" ja="実績" accent={A2} desc="開発プロジェクト・個人開発の実績" onClick={() => onNav("achievements")} />
+            <NavPanel en="Content" ja="コンテンツ" accent={A3} desc="運営しているオリジナルサイト一覧" onClick={() => onNav("content")} />
+          </div>
+        </div>
+      </section>
+
+      {/* SNS */}
+      <section id="sns-section" style={{ position:"relative" }}>
+        <div style={{ position:"absolute", inset:0, background:"rgba(4,6,14,0.72)", zIndex:0, pointerEvents:"none" }} />
+        <div style={{ position:"relative", zIndex:1, maxWidth:760, margin:"0 auto", padding:"0 2rem 4rem" }}>
+        <SecDivider label="Social / SNS" accent={A2} />
+        <div className="sns-grid">
+          <a href="https://twitter.com/" className="sns-btn" target="_blank" rel="noopener">
+            <span className="sns-icon">𝕏</span><span>@mafuyu</span>
+          </a>
+          <a href="https://qiita.com/" className="sns-btn" target="_blank" rel="noopener">
+            <span className="sns-icon" style={{ fontFamily:"'Noto Serif JP', serif", fontSize:13, fontWeight:400 }}>Q</span>
+            <span>Qiita</span>
+          </a>
+          <a href="https://tabelog.com/" className="sns-btn" target="_blank" rel="noopener">
+            <span className="sns-icon" style={{ fontSize:13 }}>✦</span>
+            <span>食べログ</span>
+          </a>
+        </div>
+        </div>
+      </section>
+
+      <div className="footer" style={{ position:"relative", zIndex:1 }}>© 真冬</div>
+    </div>
+  );
+}
+
+/* ══════════════════════════════
+   CAREER PAGE
+══════════════════════════════ */
+function CareerPage({ onNav }) {
+  useEffect(() => { window.scrollTo({ top:0 }); }, []);
+  return (
+    <div className="page-enter" style={{ position:"relative", zIndex:1, minHeight:"100vh" }}>
+      <div style={{ position:"fixed", inset:0, background:"rgba(4,6,14,0.72)", zIndex:0, pointerEvents:"none" }} />
+      <div style={{ position:"relative", zIndex:1, maxWidth:680, margin:"0 auto", padding:"0 2rem 5rem" }}>
+        <div className="subpage-hero">
+          <button className="back-btn" onClick={() => onNav("top")} style={{ marginBottom:"2rem" }}>← Back</button>
+          <div className="subpage-en" style={{ color:A1 }}>Career</div>
+          <h1 className="subpage-ja">経歴</h1>
+        </div>
+
+        <SecDivider label="Timeline" accent={A1} />
+        {[
+          { year:"20xx", title:"大学 卒業", desc:"情報系学科を卒業。在学中はアルゴリズムとデータベースを専攻。" },
+          { year:"20xx", title:"某IT企業 入社", desc:"Webシステムの設計・開発を担当。バックエンド（Go / TypeScript）を中心に、APIサーバーやデータ基盤の構築に従事。" },
+          { year:"20xx", title:"副業・個人開発 開始", desc:"業務外で謎解きまとめサイト、旅日記サイトを設計・制作・運営。フルスタックの経験を積む。" },
+          { year:"20xx", title:"フリーランス 転向", desc:"Webアプリケーション開発・技術コンサルティングを中心に活動中。" },
+        ].map((item, i) => (
+          <div key={i} className="timeline-item">
+            <div className="tl-year" style={{ color:A1 }}>{item.year}</div>
+            <div className="tl-body">
+              <div className="tl-title">{item.title}</div>
+              <div className="tl-desc">{item.desc}</div>
+            </div>
+          </div>
+        ))}
+
+        <div style={{ marginTop:"2.5rem" }}>
+          <SecDivider label="Skills" accent={A2} />
+          {[
+            { cat:"Backend",        skills:["Go","TypeScript","Node.js","PostgreSQL","Redis"] },
+            { cat:"Frontend",       skills:["React","Next.js","CSS / Tailwind"] },
+            { cat:"Infrastructure", skills:["Docker","AWS","Vercel","GitHub Actions"] },
+          ].map(({ cat, skills }) => (
+            <div key={cat} style={{ marginBottom:"1.4rem" }}>
+              <div style={{ fontFamily:"'Cormorant Garamond', serif", fontSize:11, letterSpacing:"0.25em", color:A2, marginBottom:"0.65rem", opacity:0.65 }}>{cat}</div>
+              <div>{skills.map(s => <span key={s} className="skill-tag">{s}</span>)}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="footer" style={{ position:"relative", zIndex:1 }}>© 真冬</div>
+    </div>
+  );
+}
+
+/* ══════════════════════════════
+   ACHIEVEMENTS PAGE
+══════════════════════════════ */
+function AchievementsPage({ onNav }) {
+  useEffect(() => { window.scrollTo({ top:0 }); }, []);
+  return (
+    <div className="page-enter" style={{ position:"relative", zIndex:1, minHeight:"100vh" }}>
+      <div style={{ position:"fixed", inset:0, background:"rgba(4,6,14,0.72)", zIndex:0, pointerEvents:"none" }} />
+      <div style={{ position:"relative", zIndex:1, maxWidth:680, margin:"0 auto", padding:"0 2rem 5rem" }}>
+        <div className="subpage-hero">
+          <button className="back-btn" onClick={() => onNav("top")} style={{ marginBottom:"2rem" }}>← Back</button>
+          <div className="subpage-en" style={{ color:A2 }}>Achievements</div>
+          <h1 className="subpage-ja">実績</h1>
+        </div>
+
+        <SecDivider label="個人開発" accent={A1} />
+        {[
+          { tag:"個人開発", accent:A1, title:"謎解きまとめサイト 構築・運営", desc:"全国の謎解きイベント・公演情報を集約するサイトを設計・開発・運営。Next.js + Headless CMSで構築。月間PV 1万超。" },
+          { tag:"個人開発", accent:A1, title:"旅日記サイト 制作", desc:"国内外の旅の記録を残すための静的サイト。自作の軽量CMSをGoで構築し、写真・コラムを管理。" },
+        ].map((a, i) => (
+          <div key={i} className="achiev-card">
+            <div className="achiev-tag" style={{ color:a.accent, background:`${a.accent}18` }}>{a.tag}</div>
+            <div className="achiev-title">{a.title}</div>
+            <div className="achiev-desc">{a.desc}</div>
+          </div>
+        ))}
+
+        <div style={{ marginTop:"2.2rem" }}>
+          <SecDivider label="業務実績" accent={A2} />
+          {[
+            { tag:"業務実績", accent:A2, title:"社内基盤システム リプレース", desc:"レガシーシステムをモダンなアーキテクチャへ移行。APIの再設計とキャッシュ戦略の見直しにより、パフォーマンスを約3倍改善。" },
+            { tag:"業務実績", accent:A2, title:"データパイプライン 設計・構築", desc:"大規模ログデータの集計・可視化パイプラインを設計。ETL処理の自動化により工数を大幅に削減。" },
+          ].map((a, i) => (
+            <div key={i} className="achiev-card">
+              <div className="achiev-tag" style={{ color:a.accent, background:`${a.accent}18` }}>{a.tag}</div>
+              <div className="achiev-title">{a.title}</div>
+              <div className="achiev-desc">{a.desc}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="footer" style={{ position:"relative", zIndex:1 }}>© 真冬</div>
+    </div>
+  );
+}
+
+/* ══════════════════════════════
+   CONTENT PAGE
+══════════════════════════════ */
+function ContentPage({ onNav }) {
+  useEffect(() => { window.scrollTo({ top:0 }); }, []);
+  return (
+    <div className="page-enter" style={{ position:"relative", zIndex:1, minHeight:"100vh" }}>
+      <div style={{ position:"fixed", inset:0, background:"rgba(4,6,14,0.72)", zIndex:0, pointerEvents:"none" }} />
+      <div style={{ position:"relative", zIndex:1, maxWidth:680, margin:"0 auto", padding:"0 2rem 5rem" }}>
+        <div className="subpage-hero">
+          <button className="back-btn" onClick={() => onNav("top")} style={{ marginBottom:"2rem" }}>← Back</button>
+          <div className="subpage-en" style={{ color:A3 }}>Original Content</div>
+          <h1 className="subpage-ja">コンテンツ</h1>
+        </div>
+
+        <SecDivider label="運営サイト" accent={A3} />
+        {[
+          { title:"謎解きまとめサイト", sub:"全国の謎解きイベント・公演情報をまとめた情報サイト。\n開催スケジュール・難易度・レポートを掲載。" },
+          { title:"旅日記サイト",       sub:"国内外の旅の記録と写真、コラムをまとめた個人サイト。\n旅先での発見や体験を綴っています。" },
+        ].map(({ title, sub }) => (
+          <a key={title} href="#" className="link-card" target="_blank" rel="noopener">
+            <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start", gap:"1rem" }}>
+              <div className="link-card-title">{title}</div>
+              {/* External link icon */}
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style={{ flexShrink:0, marginTop:3, opacity:0.45 }}>
+                <path d="M2 12L11 3M11 3H6M11 3V8" stroke={A3} strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
+                <rect x="1" y="1" width="6" height="6" rx="1" stroke={A3} strokeWidth="1" opacity="0.4"/>
+              </svg>
+            </div>
+            <div className="link-card-sub" style={{ whiteSpace:"pre-line" }}>{sub}</div>
+            <div className="link-card-arrow" style={{ color:A3 }}>外部サイトへ</div>
+          </a>
+        ))}
+      </div>
+      <div className="footer" style={{ position:"relative", zIndex:1 }}>© 真冬</div>
+    </div>
+  );
+}
+
+/* ══════════════════════════════
+   APP
+══════════════════════════════ */
+function App() {
+  const [page, setPage] = useState("top");
+
+  const handleNav = useCallback((target) => {
+    if (target === "sns") {
+      setPage("top");
+      // Use timeout so top page renders before we try to find the element
+      setTimeout(() => {
+        const el = document.getElementById("sns-section");
+        if (el) {
+          const y = el.getBoundingClientRect().top + window.pageYOffset - 80;
+          window.scrollTo({ top: y, behavior: "smooth" });
+        }
+      }, 120);
+    } else {
+      setPage(target);
+    }
+  }, []);
+
+  const pageMap = {
+    top:          <TopPage onNav={handleNav} />,
+    career:       <CareerPage onNav={handleNav} />,
+    achievements: <AchievementsPage onNav={handleNav} />,
+    content:      <ContentPage onNav={handleNav} />,
+  };
+
+  return (
+    <>
+      <Starfield />
+      <div style={{ position:"relative", zIndex:1 }}>
+          {pageMap[page] || pageMap.top}
+      </div>
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+</body>
+</html>

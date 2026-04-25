@@ -1,0 +1,100 @@
+
+{
+    "achievementItem": [
+        {
+            "tag": "event",
+            "contensts": [
+                {
+                    "title": "外国人観光客に対応した公共施設向けコンシェルジュ・ロボットの試作開発",
+                    "desc": "株式会社HARP/北海道大学/小樽商科大学/道総研工業試験場と共同でコンシェルジュ・ロボットの実証実験を行いました。"
+                },
+                {
+                    "title": "北大祭工学祭・テクノロジーアート展 作品展示",
+                    "desc": "北大祭工学祭にて電子工作勉強会としてアート作品の展示を行いました。"
+                },
+                {
+                    "title": "北大理系応援キャラバン隊 in 河合塾札幌校",
+                    "desc": "北大理系応援キャラバン隊にて研究紹介でも作品の展示を行いました。"
+                },
+                {
+                    "title": "No Maps 『Future Sound Interface』",
+                    "desc": "No Mapsにて電子工作勉強会として自作アナログシンセサイザの展示を行いました。"
+                },
+                {
+                    "title": "SIGNATE Data Science Competition",
+                    "desc": "SIGNATEにて熱帯低気圧検出アルゴリズム検出コンペティションに参加しました。"
+                },
+                {
+                    "title": "札幌500m美術館vol.19 いつかきたみち、こどもみち",
+                    "desc": "株式会社アートフルと共同で参加作品の展示を行いました。"
+                },
+                {
+                    "title": "札幌国際芸術祭2017 「RE/PLAY/SCAPE」 Sculpture to be Seen from Space, Improvisation to be Heard from Space",
+                    "desc": "ARTSTAT/SIAF LAB向けに無線モジュールの開発・技術提供をいたしました。"
+                }
+            ]
+        },
+        {
+            "tag": "publish",
+            "contensts": [
+                {
+                    "title": "インタラクション2017論文集",
+                    "desc": "黒澤紘生, 御手洗彰, 棟方渚, 小野哲雄. Cami-log: 咀嚼の改善を促す筋電情報を用いたアプリケーションの提案, インタラクション2017論文集, 2017."
+                },
+                {
+                    "title": "インタラクション2018論文集",
+                    "desc": "黒澤紘生, 坂本大介, 小野哲雄. スマートウォッチの傾きと筋電情報の組み合わせによるポインティング手法, インタラクション2018論文集, 2018."
+                },
+                {
+                    "title": "MobileHCI 2018発表論文",
+                    "desc": "Hiroki Kurosawa, Daisuke Sakamoto and Tetsuo Ono. MyoTilt: A Target Selection Method for Smartwatches using the Tilting Operation and Electromyography. In Proceedings of the 20th International Conference on Human-Computer Interaction with Mobile Devices and Services (MobileHCI’18)"
+                },
+                {
+                    "title": "ソウル大学ポスターセッション",
+                    "desc": "Hiroki Kurosawa. MyoTilt: A Target Selection Method for Smartwatches using the Tilting Operation and Electromyography. Hokkaido University–Seoul National University Joint Symposium 2018 International Workshop on New Frontiers in Convergence Science and Technology (Poster)."
+                },
+                {
+                    "title": "情報処理学会論文誌 2019特集論文",
+                    "desc": "黒澤紘生, 坂本大介, 小野哲雄. 2019. スマートウォッチの傾きと筋電情報の組み合わせによるポインティング手法, 情報処理学会論文誌, 特集論文 インタラクションの理解および基盤・応用技術."
+                }
+            ]
+        },
+        {
+            "tag": "business",
+            "contensts": [
+                {
+                    "title": "統合システム運用管理ソフトウェア開発・運用保守",
+                    "desc": "日本シェアNo.1の運用管理ソフトウェアの開発(Java)・運用保守に従事しました。"
+                },
+                {
+                    "title": "スマホ完結のデジタルバンク 開発・運用保守",
+                    "desc": "デジタルバンクの開発(Java)・運用保守に従事しました。100人超えプロジェクトにて新規開発を経験しました。"
+                },
+                {
+                    "title": "社内勤怠管理システムの運用保守",
+                    "desc": "勤怠管理システムの運用保守(JSP)に従事しました。"
+                },
+                {
+                    "title": "大手化粧品メーカー向け会員証アプリの開発・運用保守",
+                    "desc": "会員証アプリの開発(Flutter)・運用保守に従事しました。Google PlayにてDL数50万以上。"
+                },
+                {
+                    "title": "大手損害保険会社向けご契約者さま専用ページ刷新",
+                    "desc": "レガシーシステム刷新(Vue.js)プロジェクトにてフロントエンド領域リーダー(10名管理)を経験しました。"
+                },
+                {
+                    "title": "産学連携ハッカソン運営",
+                    "desc": "大学と連携したハッカソンイベントの企画・運営に従事しました。"
+                },
+                {
+                    "title": "大手ドラッグストア向け店舗運営システムの開発",
+                    "desc": "店舗スタッフが利用するシステムの開発(Vue.js)に従事しました。"
+                },
+                {
+                    "title": "新卒トレーニング講師",
+                    "desc": "新卒向けのビジネススキル取得トレーニングの講師を担当しました。"
+                }
+            ]
+        }
+    ]
+}

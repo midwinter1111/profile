@@ -1,35 +1,568 @@
 @import './base.css';
 
+/* ─── ベース上書き ─── */
+html,
+body {
+  background: #050710;
+  color: #d0e4f2;
+  font-family: 'Noto Serif JP', serif;
+  transition: none;
+  overflow-x: hidden;
+}
+
 #app {
-  max-width: 1280px;
+  width: 100%;
+  min-height: 100vh;
+  max-width: none;
+  display: block;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+}
+
+/* ─── Stars ─── */
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.06;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.5);
+  }
+}
+
+.star {
+  position: fixed;
+  border-radius: 50%;
+  background: #c8dff0;
+  animation: twinkle linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─── スクロールインジケーター ─── */
+@keyframes scrollDrop {
+  0% {
+    top: -100%;
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    top: 200%;
+    opacity: 0;
+  }
+}
+
+.scroll-track {
+  position: relative;
+  width: 1px;
+  height: 52px;
+  background: rgba(100, 165, 225, 0.12);
+  overflow: hidden;
   margin: 0 auto;
-  padding: 2rem;
-  font-weight: normal;
 }
 
-a,
-.green {
+.scroll-drop {
+  position: absolute;
+  left: 0;
+  width: 1px;
+  height: 60%;
+  background: linear-gradient(180deg, transparent, rgba(110, 175, 230, 0.9), transparent);
+  animation: scrollDrop 2s ease-in-out infinite;
+}
+
+/* ─── ページトランジション ─── */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-enter {
+  animation: fadeUp 0.45s ease forwards;
+}
+
+/* ─── 戻るボタン ─── */
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(120, 180, 220, 0.55);
+  cursor: pointer;
+  background: none;
+  border: none;
+  transition: color 0.2s;
+  padding: 0;
+  margin-bottom: 2rem;
+}
+
+.back-btn:hover {
+  color: #8ec8e8;
+}
+
+/* ─── セクション区切り ─── */
+.sec-divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.sec-divider-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 10px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+/* ─── ナビゲーションパネル ─── */
+.nav-panels {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.nav-panel {
+  width: 100%;
+  background:
+    repeating-linear-gradient(
+      -52deg,
+      transparent,
+      transparent 18px,
+      rgba(160, 215, 245, 0.018) 18px,
+      rgba(160, 215, 245, 0.018) 19px
+    ),
+    repeating-linear-gradient(
+      38deg,
+      transparent,
+      transparent 24px,
+      rgba(140, 200, 240, 0.012) 24px,
+      rgba(140, 200, 240, 0.012) 25px
+    ),
+    rgba(10, 22, 50, 0.52);
+  backdrop-filter: blur(18px) saturate(1.2);
+  -webkit-backdrop-filter: blur(18px) saturate(1.2);
+  border-top: 1px solid rgba(200, 235, 255, 0.18);
+  border-left: 1px solid rgba(160, 210, 240, 0.1);
+  border-right: 1px solid rgba(120, 180, 220, 0.08);
+  border-bottom: 1px solid rgba(90, 150, 200, 0.12);
+  border-radius: 2px;
+  box-shadow:
+    0 1px 0 rgba(210, 240, 255, 0.07) inset,
+    0 -1px 0 rgba(60, 120, 200, 0.06) inset,
+    0 4px 24px rgba(20, 50, 110, 0.35),
+    0 1px 4px rgba(100, 180, 240, 0.08);
+  padding: 2rem 2.4rem;
+  cursor: pointer;
+  transition:
+    background 0.3s,
+    box-shadow 0.3s,
+    border-color 0.3s;
   text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-  padding: 3px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  text-align: left;
 }
 
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
+/* 上端グリント */
+.nav-panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 5%,
+    rgba(220, 245, 255, 0.35) 40%,
+    rgba(200, 235, 255, 0.55) 52%,
+    rgba(220, 245, 255, 0.35) 64%,
+    transparent 95%
+  );
 }
 
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
+/* 下端アクセントライン */
+.nav-panel::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--p-accent, #7bbcd8), transparent);
+  transform: scaleX(0);
+  transition: transform 0.38s ease;
+}
+
+.nav-panel:hover {
+  background:
+    repeating-linear-gradient(
+      -52deg,
+      transparent,
+      transparent 18px,
+      rgba(160, 215, 245, 0.03) 18px,
+      rgba(160, 215, 245, 0.03) 19px
+    ),
+    repeating-linear-gradient(
+      38deg,
+      transparent,
+      transparent 24px,
+      rgba(140, 200, 240, 0.02) 24px,
+      rgba(140, 200, 240, 0.02) 25px
+    ),
+    rgba(14, 30, 68, 0.62);
+  box-shadow:
+    0 1px 0 rgba(210, 240, 255, 0.1) inset,
+    0 -1px 0 rgba(60, 120, 200, 0.08) inset,
+    0 6px 32px rgba(20, 50, 120, 0.45),
+    0 0 0 1px rgba(120, 190, 240, 0.12);
+}
+
+.nav-panel:hover::after {
+  transform: scaleX(1);
+}
+
+.nav-panel-left {
+  flex: 1;
+}
+
+.nav-panel-en {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 10px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  opacity: 0.8;
+}
+
+.nav-panel-ja {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 22px;
+  font-weight: 300;
+  letter-spacing: 0.18em;
+  color: #d4e8f6;
+  margin-bottom: 0.6rem;
+}
+
+.nav-panel-desc {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 12px;
+  line-height: 1.7;
+  color: rgba(130, 175, 205, 0.55);
+  letter-spacing: 0.04em;
+}
+
+.nav-panel-arrow {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  margin-left: 2rem;
+  flex-shrink: 0;
+  opacity: 0;
+  transition:
+    opacity 0.25s,
+    transform 0.25s;
+  transform: translateX(-8px);
+}
+
+.nav-panel:hover .nav-panel-arrow {
+  opacity: 0.55;
+  transform: translateX(0);
+}
+
+/* ─── SNSボタン ─── */
+.sns-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.sns-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  background: rgba(10, 18, 40, 0.7);
+  border: 1px solid rgba(100, 160, 210, 0.2);
+  border-radius: 3px;
+  padding: 0.65rem 1.3rem;
+  text-decoration: none;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 13px;
+  color: #b4d0e8;
+  letter-spacing: 0.07em;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.sns-btn:hover {
+  background: rgba(120, 188, 216, 0.1);
+  border-color: rgba(120, 188, 216, 0.45);
+}
+
+.sns-icon {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px;
+  line-height: 1;
+  opacity: 0.75;
+}
+
+/* ─── タイムライン ─── */
+.timeline-item {
+  display: flex;
+  gap: 1.4rem;
+  margin-bottom: 1.8rem;
+}
+
+.tl-year {
+  flex-shrink: 0;
+  width: 52px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  padding-top: 2px;
+}
+
+.tl-body {
+  border-left: 1px solid rgba(120, 188, 216, 0.18);
+  padding-left: 1.4rem;
+}
+
+.tl-title {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #cce0f0;
+  margin-bottom: 0.35rem;
+  letter-spacing: 0.06em;
+}
+
+.tl-desc {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 12px;
+  color: #7a9db5;
+  line-height: 1.78;
+  letter-spacing: 0.04em;
+}
+
+/* ─── 実績カード ─── */
+.achiev-card {
+  border-radius: 3px;
+  padding: 1.1rem 1.3rem;
+  margin-bottom: 0.9rem;
+  border: 1px solid rgba(100, 160, 210, 0.1);
+  background: rgba(10, 18, 42, 0.7);
+}
+
+.achiev-tag {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  padding: 2px 8px;
+  border-radius: 2px;
+  display: inline-block;
+  margin-bottom: 0.55rem;
+}
+
+.achiev-title {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #cce0f0;
+  margin-bottom: 0.35rem;
+  letter-spacing: 0.06em;
+}
+
+.achiev-desc {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 12px;
+  color: #7a9db5;
+  line-height: 1.7;
+  letter-spacing: 0.03em;
+}
+
+/* ─── リンクカード ─── */
+.link-card {
+  display: block;
+  text-decoration: none;
+  border-radius: 3px;
+  padding: 1.3rem 1.5rem;
+  margin-bottom: 12px;
+  border: 1px solid rgba(100, 160, 210, 0.12);
+  transition: border-color 0.25s;
+  background: rgba(10, 18, 40, 0.7);
+}
+
+.link-card:hover {
+  border-color: rgba(100, 160, 210, 0.38);
+}
+
+.link-card-title {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 16px;
+  font-weight: 300;
+  color: #cce0f0;
+  margin-bottom: 0.4rem;
+  letter-spacing: 0.08em;
+}
+
+.link-card-sub {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 12px;
+  color: #6a8fa8;
+  line-height: 1.7;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.7rem;
+  white-space: pre-line;
+}
+
+.link-card-arrow {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  opacity: 0.65;
+}
+
+/* ─── スキルタグ ─── */
+.skill-tag {
+  display: inline-block;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  padding: 3px 10px;
+  border-radius: 2px;
+  margin: 3px;
+  border: 1px solid rgba(100, 160, 210, 0.2);
+  color: rgba(155, 195, 222, 0.7);
+}
+
+/* ─── サブページヒーロー ─── */
+.subpage-hero {
+  padding: 3.5rem 0 2rem;
+  border-bottom: 1px solid rgba(80, 140, 200, 0.08);
+  margin-bottom: 2.5rem;
+}
+
+.subpage-en {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 11px;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  margin-bottom: 0.6rem;
+  opacity: 0.55;
+}
+
+.subpage-ja {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 32px;
+  font-weight: 200;
+  letter-spacing: 0.2em;
+  color: #d8ecf8;
+}
+
+/* ─── フッター ─── */
+.footer {
+  text-align: center;
+  padding: 2rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  color: rgba(80, 120, 160, 0.28);
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── 暗幕オーバーレイ（セクション内：absolute） ─── */
+.dark-veil {
+  position: absolute;
+  inset: 0;
+  background: rgba(4, 6, 14, 0.72);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ─── レスポンシブ ─── */
+@media (max-width: 640px) {
+  .nav-panel {
+    padding: 1.5rem 1.4rem;
+    flex-direction: column;
+    align-items: flex-start;
   }
 
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
+  .nav-panel-ja {
+    font-size: 20px;
+  }
+
+  .nav-panel-arrow {
+    display: none;
+  }
+
+  .nav-panel-desc {
+    font-size: 11px;
+  }
+
+  .subpage-ja {
+    font-size: 26px;
+  }
+
+  .subpage-hero {
+    padding: 2.5rem 0 1.5rem;
+  }
+
+  .timeline-item {
+    gap: 1rem;
+  }
+
+  .tl-year {
+    width: 44px;
+    font-size: 12px;
+  }
+
+  .tl-title {
+    font-size: 13px;
+  }
+
+  .tl-desc {
+    font-size: 11px;
+  }
+
+  .achiev-title {
+    font-size: 13px;
+  }
+
+  .achiev-desc {
+    font-size: 11px;
+  }
+
+  .link-card-title {
+    font-size: 14px;
+  }
+
+  .link-card-sub {
+    font-size: 11px;
+  }
+
+  .sns-btn {
+    font-size: 12px;
+    padding: 0.6rem 1rem;
   }
 }

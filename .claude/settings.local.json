@@ -1,0 +1,34 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pnpm type-check *)",
+      "Bash(dir \"d:\\\\work\\\\profile\\\\node_modules\\\\@tsconfig\\\\node24\")",
+      "Bash(pnpm ci *)",
+      "Bash(pnpm install *)",
+      "Bash(pnpm build-only *)",
+      "Bash(pnpm dev *)",
+      "PowerShell($response = Invoke-WebRequest -Uri \"http://localhost:3000/\" -UseBasicParsing; $response.Content)",
+      "PowerShell($mainJsUrl = \"http://localhost:3000/src/main.ts\"; $r = Invoke-WebRequest -Uri $mainJsUrl -UseBasicParsing; $r.StatusCode)",
+      "PowerShell($r = Invoke-WebRequest -Uri \"http://localhost:3000/src/assets/main.css\" -UseBasicParsing; $r.Content | Select-String \"background\" | Select-Object -First 10)",
+      "PowerShell($r = Invoke-WebRequest -Uri \"http://localhost:3000/src/views/TopPage.vue\" -UseBasicParsing; $r.StatusCode)",
+      "PowerShell($r = Invoke-WebRequest -Uri \"http://localhost:3000/src/App.vue\" -UseBasicParsing; $r.Content | Select-String \"error|Error|import\" | Select-Object -First 20)",
+      "PowerShell($r = Invoke-WebRequest -Uri \"http://localhost:3000/src/router/index.ts\" -UseBasicParsing; $r.Content | Select-String \"error|SyntaxError\" | Select-Object -First 10)",
+      "PowerShell($r = Invoke-WebRequest -Uri \"http://localhost:3000/src/views/TopPage.vue\" -UseBasicParsing; if \\($r.Content -match \"error|Error|throw|SyntaxError\"\\) { \"ERRORS FOUND: \" + \\($r.Content | Select-String \"error|throw\" | Select-Object -First 5 | Out-String\\) } else { \"No obvious errors. First 2000 chars:\"; $r.Content.Substring\\(0, [Math]::Min\\(2000, $r.Content.Length\\)\\) })",
+      "PowerShell($r = Invoke-WebRequest -Uri \"http://localhost:3000/src/views/TopPage.vue\" -UseBasicParsing; $r.Content.Substring\\(2000, [Math]::Min\\(3000, $r.Content.Length - 2000\\)\\))",
+      "PowerShell($r = Invoke-WebRequest -Uri \"http://localhost:3000/src/composables/TopPage.composable.js\" -UseBasicParsing; $r.Content | Select-String \"error|Error|throw\" | Select-Object -First 5)",
+      "PowerShell($r = Invoke-WebRequest -Uri \"http://localhost:3000/__tailwindcss__/base.css\" -UseBasicParsing; $r.Content | Select-String \"background|body|html\" | Select-Object -First 20)",
+      "PowerShell($r = Invoke-WebRequest -Uri \"http://localhost:3000/tailwind.css\" -UseBasicParsing; $r.Content.Substring\\(0, [Math]::Min\\(3000, $r.Content.Length\\)\\))",
+      "Bash(node -e \"const pkg = require\\('./node_modules/vite/package.json'\\); console.log\\('Vite:', pkg.version\\)\")",
+      "Bash(curl -s \"http://localhost:3000/\")",
+      "Bash(curl -s \"http://localhost:3000/src/main.ts\")",
+      "Bash(curl -s \"http://localhost:3000/src/App.vue\")",
+      "Bash(curl -s \"http://localhost:3000/src/views/TopPage.vue\")",
+      "Bash(curl -s \"http://localhost:3000/src/assets/main.css\")",
+      "Bash(curl -s \"http://localhost:3000/src/router/index.js\")",
+      "Bash(curl -s \"http://localhost:3000/src/router/index.ts\")",
+      "Bash(curl -s \"http://localhost:3000/src/composables/TopPage.composable.ts\")",
+      "Bash(curl -s \"http://localhost:3000/src/composables/CareerPage.composable.ts\")",
+      "Bash(curl -s \"http://localhost:3000/src/composables/AchievementsPage.composable.ts\")"
+    ]
+  }
+}
