@@ -32,9 +32,9 @@ const accentDots = [
         aria-hidden="true"
       />
       <div class="hero-text">
-        <div class="hero-subtitle">— Portfolio —</div>
-        <h1 class="hero-name">真冬</h1>
-        <p class="hero-role">ソフトウェアエンジニア</p>
+        <!-- <div class="hero-subtitle">— Portfolio —</div> -->
+        <h1 class="hero-name">ホームページ的なやつ</h1>
+        <p class="hero-role">自己紹介とかもろもろ</p>
         <div class="scroll-indicator" aria-hidden="true">
           <div class="scroll-track">
             <div class="scroll-drop" />
@@ -87,7 +87,7 @@ const accentDots = [
       </div>
     </section>
 
-    <footer class="footer">© 真冬</footer>
+    <footer class="footer">© mafunity_</footer>
   </div>
 </template>
 

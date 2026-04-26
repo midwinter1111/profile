@@ -18,37 +18,64 @@ const { eventAchievements, publishAchievements, workAchievements, goBack } =
 
       <SecDivider label="イベント" accent="#7bbcd8" />
 
-      <div v-for="(item, i) in eventAchievements" :key="i" class="achiev-card">
+      <component
+        :is="item.link ? 'a' : 'div'"
+        v-for="(item, i) in eventAchievements"
+        :key="i"
+        class="achiev-card"
+        :class="{ 'achiev-card--link': item.link }"
+        :href="item.link || undefined"
+        :target="item.link ? '_blank' : undefined"
+        :rel="item.link ? 'noopener' : undefined"
+      >
         <div class="achiev-tag" :style="{ color: item.accent, background: `${item.accent}18` }">
           {{ item.tag }}
         </div>
         <div class="achiev-title">{{ item.title }}</div>
         <div v-if="item.desc" class="achiev-desc">{{ item.desc }}</div>
-      </div>
+      </component>
 
       <div class="achiev-section">
         <SecDivider label="出版" accent="#9baee8" />
-        <div v-for="(item, i) in publishAchievements" :key="i" class="achiev-card">
+        <component
+          :is="item.link ? 'a' : 'div'"
+          v-for="(item, i) in publishAchievements"
+          :key="i"
+          class="achiev-card"
+          :class="{ 'achiev-card--link': item.link }"
+          :href="item.link || undefined"
+          :target="item.link ? '_blank' : undefined"
+          :rel="item.link ? 'noopener' : undefined"
+        >
           <div class="achiev-tag" :style="{ color: item.accent, background: `${item.accent}18` }">
             {{ item.tag }}
           </div>
           <div class="achiev-title">{{ item.title }}</div>
           <div v-if="item.desc" class="achiev-desc">{{ item.desc }}</div>
-        </div>
+        </component>
       </div>
 
       <div class="achiev-section">
         <SecDivider label="業務実績" accent="#9baee8" />
-        <div v-for="(item, i) in workAchievements" :key="i" class="achiev-card">
+        <component
+          :is="item.link ? 'a' : 'div'"
+          v-for="(item, i) in workAchievements"
+          :key="i"
+          class="achiev-card"
+          :class="{ 'achiev-card--link': item.link }"
+          :href="item.link || undefined"
+          :target="item.link ? '_blank' : undefined"
+          :rel="item.link ? 'noopener' : undefined"
+        >
           <div class="achiev-tag" :style="{ color: item.accent, background: `${item.accent}18` }">
             {{ item.tag }}
           </div>
           <div class="achiev-title">{{ item.title }}</div>
           <div v-if="item.desc" class="achiev-desc">{{ item.desc }}</div>
-        </div>
+        </component>
       </div>
     </div>
-    <footer class="footer">© 真冬</footer>
+    <footer class="footer">© mafunity_</footer>
   </div>
 </template>
 
@@ -77,5 +104,15 @@ const { eventAchievements, publishAchievements, workAchievements, goBack } =
 
 .achiev-section {
   margin-top: 2.2rem;
+}
+
+.achiev-card--link {
+  cursor: pointer;
+  text-decoration: none;
+  display: block;
+}
+
+.achiev-card--link:hover .achiev-title {
+  opacity: 0.75;
 }
 </style>

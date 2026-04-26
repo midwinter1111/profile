@@ -8,15 +8,18 @@ export interface AchievementItem {
   accent: string
   title: string
   desc: string
+  link: string
 }
 
 const mapItems = (tag: string, tagLabel: string, accent: string): AchievementItem[] => {
   const found = achievementData.achievementItem.find((item) => item.tag === tag)
-  return (found?.contensts ?? []).map((entry) => ({
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return (found?.contensts ?? []).map((entry: any) => ({
     tag: tagLabel,
     accent,
     title: entry.title,
-    desc: entry.desc,
+    desc: entry.desc ?? '',
+    link: entry.link ?? '',
   }))
 }
 

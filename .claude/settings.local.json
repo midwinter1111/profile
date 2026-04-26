@@ -28,7 +28,22 @@
       "Bash(curl -s \"http://localhost:3000/src/router/index.ts\")",
       "Bash(curl -s \"http://localhost:3000/src/composables/TopPage.composable.ts\")",
       "Bash(curl -s \"http://localhost:3000/src/composables/CareerPage.composable.ts\")",
-      "Bash(curl -s \"http://localhost:3000/src/composables/AchievementsPage.composable.ts\")"
+      "Bash(curl -s \"http://localhost:3000/src/composables/AchievementsPage.composable.ts\")",
+      "Bash(curl -s \"http://localhost:3000/src/views/TravelPage.vue\")",
+      "Bash(curl -s \"http://localhost:3000/src/composables/TravelPage.composable.ts\")",
+      "Bash(curl -s \"http://localhost:3000/src/components/JapanMap.vue\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" \"http://localhost:3000/src/components/JapanMap.vue\")",
+      "Bash(curl --connect-timeout 5 -s \"http://localhost:3000/src/components/JapanMap.vue\")",
+      "Bash(curl -s --max-time 8 \"http://localhost:3000/\")",
+      "Bash(curl -s --max-time 5 \"http://localhost:3000/src/components/JapanMap.vue\")",
+      "Bash(pnpm add *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/)",
+      "Bash(curl -s http://localhost:3000/travel)",
+      "Bash(pnpm exec *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" \"https://raw.githubusercontent.com/dataofjapan/land/master/japan.topojson\")",
+      "PowerShell($ProgressPreference = 'SilentlyContinue'; Invoke-WebRequest -Uri \"https://raw.githubusercontent.com/dataofjapan/land/master/japan.topojson\" -OutFile \"d:\\\\work\\\\profile\\\\public\\\\japan.topojson\" -TimeoutSec 30; Write-Output \"Done: $\\(\\(Get-Item 'd:\\\\work\\\\profile\\\\public\\\\japan.topojson'\\).Length\\) bytes\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" \"http://localhost:3000/japan.topojson\")",
+      "Bash(node -e ' *)"
     ]
   }
 }

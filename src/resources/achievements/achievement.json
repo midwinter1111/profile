@@ -6,31 +6,38 @@
             "contensts": [
                 {
                     "title": "外国人観光客に対応した公共施設向けコンシェルジュ・ロボットの試作開発",
-                    "desc": "株式会社HARP/北海道大学/小樽商科大学/道総研工業試験場と共同でコンシェルジュ・ロボットの実証実験を行いました。"
+                    "desc": "株式会社HARP/北海道大学/小樽商科大学/道総研工業試験場と共同でコンシェルジュ・ロボットの実証実験を行いました。",
+                    "link": "http://robot-concierge.hci-lab.jp/"
                 },
                 {
                     "title": "北大祭工学祭・テクノロジーアート展 作品展示",
-                    "desc": "北大祭工学祭にて電子工作勉強会としてアート作品の展示を行いました。"
+                    "desc": "北大祭工学祭にて電子工作勉強会としてアート作品の展示を行いました。",
+                    "link": ""
                 },
                 {
                     "title": "北大理系応援キャラバン隊 in 河合塾札幌校",
-                    "desc": "北大理系応援キャラバン隊にて研究紹介でも作品の展示を行いました。"
+                    "desc": "北大理系応援キャラバン隊にて研究紹介でも作品の展示を行いました。",
+                    "link": "https://freshu.ist.hokudai.ac.jp/archives/4476/"
                 },
                 {
                     "title": "No Maps 『Future Sound Interface』",
-                    "desc": "No Mapsにて電子工作勉強会として自作アナログシンセサイザの展示を行いました。"
+                    "desc": "No Mapsにて電子工作勉強会として自作アナログシンセサイザの展示を行いました。",
+                    "link": "https://no-maps.jp/2017/event/future_sound_interface.html"
                 },
                 {
                     "title": "SIGNATE Data Science Competition",
-                    "desc": "SIGNATEにて熱帯低気圧検出アルゴリズム検出コンペティションに参加しました。"
+                    "desc": "SIGNATEにて熱帯低気圧検出アルゴリズム検出コンペティションに参加しました。",
+                    "link": ""
                 },
                 {
                     "title": "札幌500m美術館vol.19 いつかきたみち、こどもみち",
-                    "desc": "株式会社アートフルと共同で参加作品の展示を行いました。"
+                    "desc": "株式会社アートフルと共同で参加作品の展示を行いました。",
+                    "link": "https://www.500m.jp/archive/3852.html"
                 },
                 {
                     "title": "札幌国際芸術祭2017 「RE/PLAY/SCAPE」 Sculpture to be Seen from Space, Improvisation to be Heard from Space",
-                    "desc": "ARTSTAT/SIAF LAB向けに無線モジュールの開発・技術提供をいたしました。"
+                    "desc": "ARTSTAT/SIAF LAB向けに無線モジュールの開発・技術提供をいたしました。",
+                    "link": "https://space-moere.org/ja/"
                 }
             ]
         },
@@ -39,23 +46,28 @@
             "contensts": [
                 {
                     "title": "インタラクション2017論文集",
-                    "desc": "黒澤紘生, 御手洗彰, 棟方渚, 小野哲雄. Cami-log: 咀嚼の改善を促す筋電情報を用いたアプリケーションの提案, インタラクション2017論文集, 2017."
+                    "desc": "黒澤紘生, 御手洗彰, 棟方渚, 小野哲雄. Cami-log: 咀嚼の改善を促す筋電情報を用いたアプリケーションの提案, インタラクション2017論文集, 2017.",
+                    "link": "https://www.interaction-ipsj.org/proceedings/2017/data/pdf/3-409-70.pdf"
                 },
                 {
                     "title": "インタラクション2018論文集",
-                    "desc": "黒澤紘生, 坂本大介, 小野哲雄. スマートウォッチの傾きと筋電情報の組み合わせによるポインティング手法, インタラクション2018論文集, 2018."
+                    "desc": "黒澤紘生, 坂本大介, 小野哲雄. スマートウォッチの傾きと筋電情報の組み合わせによるポインティング手法, インタラクション2018論文集, 2018.",
+                    "link": "https://www.interaction-ipsj.org/proceedings/2018/data/pdf/3B17.pdf"
                 },
                 {
                     "title": "MobileHCI 2018発表論文",
-                    "desc": "Hiroki Kurosawa, Daisuke Sakamoto and Tetsuo Ono. MyoTilt: A Target Selection Method for Smartwatches using the Tilting Operation and Electromyography. In Proceedings of the 20th International Conference on Human-Computer Interaction with Mobile Devices and Services (MobileHCI’18)"
+                    "desc": "Hiroki Kurosawa, Daisuke Sakamoto and Tetsuo Ono. MyoTilt: A Target Selection Method for Smartwatches using the Tilting Operation and Electromyography. In Proceedings of the 20th International Conference on Human-Computer Interaction with Mobile Devices and Services (MobileHCI’18)",
+                    "link": ""
                 },
                 {
                     "title": "ソウル大学ポスターセッション",
-                    "desc": "Hiroki Kurosawa. MyoTilt: A Target Selection Method for Smartwatches using the Tilting Operation and Electromyography. Hokkaido University–Seoul National University Joint Symposium 2018 International Workshop on New Frontiers in Convergence Science and Technology (Poster)."
+                    "desc": "Hiroki Kurosawa. MyoTilt: A Target Selection Method for Smartwatches using the Tilting Operation and Electromyography. Hokkaido University–Seoul National University Joint Symposium 2018 International Workshop on New Frontiers in Convergence Science and Technology (Poster).",
+                    "link": ""
                 },
                 {
                     "title": "情報処理学会論文誌 2019特集論文",
-                    "desc": "黒澤紘生, 坂本大介, 小野哲雄. 2019. スマートウォッチの傾きと筋電情報の組み合わせによるポインティング手法, 情報処理学会論文誌, 特集論文 インタラクションの理解および基盤・応用技術."
+                    "desc": "黒澤紘生, 坂本大介, 小野哲雄. 2019. スマートウォッチの傾きと筋電情報の組み合わせによるポインティング手法, 情報処理学会論文誌, 特集論文 インタラクションの理解および基盤・応用技術.",
+                    "link": ""
                 }
             ]
         },

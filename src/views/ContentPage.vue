@@ -50,7 +50,7 @@ const { siteLinks, goBack } = useContentPageLogic()
         <div class="link-card-arrow" style="color: #5ecac0">外部サイトへ</div>
       </a>
     </div>
-    <footer class="footer">© 真冬</footer>
+    <footer class="footer">© mafunity_</footer>
   </div>
 </template>
 

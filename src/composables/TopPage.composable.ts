@@ -51,14 +51,14 @@ export const useTopPageLogic = () => {
   ]
 
   const snsLinks: SnsLinkItem[] = [
-    { icon: '𝕏', label: '@mafuyu', href: 'https://twitter.com/' },
+    { icon: '𝕏', label: '@mafunity_', href: 'https://x.com/mafunity_' },
     {
       icon: 'Q',
-      label: 'Qiita',
-      href: 'https://qiita.com/',
+      label: 'midwinter222',
+      href: 'https://qiita.com/midwinter222',
       iconStyle: { fontFamily: "'Noto Serif JP', serif", fontSize: '13px', fontWeight: '400' },
     },
-    { icon: '✦', label: '食べログ', href: 'https://tabelog.com/', iconStyle: { fontSize: '13px' } },
+    { icon: '✦', label: '雑食の真冬さん', href: 'https://tabelog.com/rvwr/midwinter11/', iconStyle: { fontSize: '13px' } },
   ]
 
   const navigateTo = (path: string) => {

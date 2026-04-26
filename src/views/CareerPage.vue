@@ -58,7 +58,7 @@ const { timelineItems, certificationItems, rewardItems, skillCategories, goBack 
         </div>
       </div>
     </div>
-    <footer class="footer">© 真冬</footer>
+    <footer class="footer">© mafunity_</footer>
   </div>
 </template>
 
