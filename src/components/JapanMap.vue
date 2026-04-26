@@ -96,7 +96,7 @@ const renderedPrefectures = computed(() =>
 
 onMounted(async () => {
   try {
-    const res = await fetch('/japan.topojson')
+    const res = await fetch(`${import.meta.env.BASE_URL}japan.topojson`)
     if (!res.ok) throw new Error(`HTTP ${res.status}`)
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const topo: any = await res.json()
