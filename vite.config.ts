@@ -11,7 +11,7 @@ export default defineConfig(({mode}) =>{
   const enableStrip = env.VITE_CONSOLE_LOG_LEVEL === 'OFF';
 
   return {
-    base: '/',
+    base: '/profile',
     evnDir: './environments/',
     plugins: [
     vue(),
