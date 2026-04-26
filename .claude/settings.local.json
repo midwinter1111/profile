@@ -43,7 +43,8 @@
       "Bash(curl -s -o /dev/null -w \"%{http_code}\" \"https://raw.githubusercontent.com/dataofjapan/land/master/japan.topojson\")",
       "PowerShell($ProgressPreference = 'SilentlyContinue'; Invoke-WebRequest -Uri \"https://raw.githubusercontent.com/dataofjapan/land/master/japan.topojson\" -OutFile \"d:\\\\work\\\\profile\\\\public\\\\japan.topojson\" -TimeoutSec 30; Write-Output \"Done: $\\(\\(Get-Item 'd:\\\\work\\\\profile\\\\public\\\\japan.topojson'\\).Length\\) bytes\")",
       "Bash(curl -s -o /dev/null -w \"%{http_code}\" \"http://localhost:3000/japan.topojson\")",
-      "Bash(node -e ' *)"
+      "Bash(node -e ' *)",
+      "Bash(pnpm run *)"
     ]
   }
 }

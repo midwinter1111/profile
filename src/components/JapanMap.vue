@@ -88,11 +88,10 @@ const prefectureMap = computed(() =>
 )
 
 const renderedPrefectures = computed(() =>
-  Object.entries(prefPaths.value).map(([id, path]) => ({
-    id,
-    path,
-    ...(prefectureMap.value[id] ?? { name: id, hasPhoto: false, photoUrl: '' }),
-  })),
+  Object.entries(prefPaths.value).map(([id, path]) => {
+    const pref = prefectureMap.value[id] ?? { name: id, hasPhoto: false, photoUrl: '' }
+    return { id, path, name: pref.name, hasPhoto: pref.hasPhoto, photoUrl: pref.photoUrl }
+  }),
 )
 
 onMounted(async () => {
@@ -102,7 +101,7 @@ onMounted(async () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const topo: any = await res.json()
 
-    const objectKey = Object.keys(topo.objects)[0]
+    const objectKey = Object.keys(topo.objects)[0] as string
 
     // Mercator投影: 北海道が見切れないよう中心を下寄りに配置
     const projection = geoMercator()

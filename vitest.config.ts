@@ -7,7 +7,8 @@ import { playwright } from '@vitest/browser-playwright';
 const dirname = typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url));
 
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
-export default mergeConfig(viteConfig, defineConfig({
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export default mergeConfig(viteConfig as any, defineConfig({
   test: {
     projects: [{
       extends: true,
