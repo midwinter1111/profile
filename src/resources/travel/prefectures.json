@@ -22,7 +22,7 @@
     { "id": "nagano",    "name": "長野",   "hasPhoto": false, "photoUrl": "" },
     { "id": "gifu",      "name": "岐阜",   "hasPhoto": false, "photoUrl": "" },
     { "id": "shizuoka",  "name": "静岡",   "hasPhoto": false, "photoUrl": "https://photos.app.goo.gl/XwJxanNu8v9iGhHC7" },
-    { "id": "aichi",     "name": "愛知",   "hasPhoto": true,  "photoUrl": "" },
+    { "id": "aichi",     "name": "愛知",   "hasPhoto": true,  "photoUrl": "https://photos.app.goo.gl/oocXdqKWym3y6Gr66" },
     { "id": "mie",       "name": "三重",   "hasPhoto": false, "photoUrl": "" },
     { "id": "shiga",     "name": "滋賀",   "hasPhoto": false, "photoUrl": "https://photos.app.goo.gl/AnKFHi7qDNDTTwiG8" },
     { "id": "kyoto",     "name": "京都",   "hasPhoto": true,  "photoUrl": "https://photos.app.goo.gl/mamcir8VsjcT6rT17" },
